@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MediaPlayer</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MediaPlayer.styles.css" asp-append-version="true" />
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body class="bg-body-secondary">
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 bg-black border-bottom box-shadow">
+                    <h3 class="bg-black text-white">Video Catalogue</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 bg-black border-bottom box-shadow">
+                    <nav class="navbar navbar-expand-sm bg-dark">
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsible">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div id="collapsible" class="collapse navbar-collapse">
+                            <ul class="navbar-nav bg-dark navbar-dark">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-page="/Catalogue">Catalogue</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-page="/RecentMovie">Recent Movie</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-page="/Index">Upload</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main role="main" class="bg-body-secondary">
+        @RenderBody()
+    </main>
+    <footer class="border-top footer text-muted bg-body-secondary">
+        <div class="container">
+            &copy; 2025 - MediaPlayer - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

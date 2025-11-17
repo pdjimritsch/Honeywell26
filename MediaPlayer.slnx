@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="MediaPlayer/MediaPlayer.Common/MediaPlayer.Common.csproj" />
+  <Project Path="MediaPlayer/MediaPlayer.Configuration/MediaPlayer.Configuration.csproj" Id="170d6632-ac21-43c8-be30-38b3369f6850" />
+  <Project Path="MediaPlayer/MediaPlayer.Data.Factory/MediaPlayer.Data.Factory.csproj" Id="53ab68b8-ab7a-42fe-a2ae-95615594889e" />
+  <Project Path="MediaPlayer/MediaPlayer.Security/MediaPlayer.Security.csproj" />
+  <Project Path="MediaPlayer/MediaPlayer/MediaPlayer.csproj" />
+</Solution>

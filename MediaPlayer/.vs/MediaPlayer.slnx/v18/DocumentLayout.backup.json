@@ -1,0 +1,239 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer\\pages\\catalogue.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|solutionrelative:mediaplayer\\pages\\catalogue.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer\\pages\\catalogue.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|solutionrelative:mediaplayer\\pages\\catalogue.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer\\pages\\recentmovie.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|solutionrelative:mediaplayer\\pages\\recentmovie.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|solutionrelative:mediaplayer\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer\\pages\\recentmovie.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|solutionrelative:mediaplayer\\pages\\recentmovie.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53AB68B8-AB7A-42FE-A2AE-95615594889E}|MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer.data.factory\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53AB68B8-AB7A-42FE-A2AE-95615594889E}|MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj|solutionrelative:mediaplayer.data.factory\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|solutionrelative:mediaplayer\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53AB68B8-AB7A-42FE-A2AE-95615594889E}|MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer.data.factory\\abstraction\\imovie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53AB68B8-AB7A-42FE-A2AE-95615594889E}|MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj|solutionrelative:mediaplayer.data.factory\\abstraction\\imovie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A51FB601-3FD3-1718-922D-7090EB709796}|MediaPlayer.Common\\MediaPlayer.Common.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer.common\\jdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A51FB601-3FD3-1718-922D-7090EB709796}|MediaPlayer.Common\\MediaPlayer.Common.csproj|solutionrelative:mediaplayer.common\\jdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|solutionrelative:mediaplayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|c:\\dev\\remote\\honeywell\\honeywell26\\mediaplayer\\mediaplayer\\appgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B69B466E-F7EC-D693-2F13-04F1F08FCF49}|MediaPlayer\\MediaPlayer.csproj|solutionrelative:mediaplayer\\appgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 13,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{ecb7191a-597b-41f5-9843-03a4cf275dde}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{ca8cc5c7-0231-406a-95cd-aa5ed6ac0190}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RecentMovie.cshtml",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\RecentMovie.cshtml",
+              "RelativeDocumentMoniker": "MediaPlayer\\Pages\\RecentMovie.cshtml",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\RecentMovie.cshtml",
+              "RelativeToolTip": "MediaPlayer\\Pages\\RecentMovie.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-17T03:04:56.783Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RecentMovie.cshtml.cs",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\RecentMovie.cshtml.cs",
+              "RelativeDocumentMoniker": "MediaPlayer\\Pages\\RecentMovie.cshtml.cs",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\RecentMovie.cshtml.cs",
+              "RelativeToolTip": "MediaPlayer\\Pages\\RecentMovie.cshtml.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAwwB0AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T00:40:26.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "MediaPlayer\\Pages\\Index.cshtml.cs",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\Index.cshtml.cs",
+              "RelativeToolTip": "MediaPlayer\\Pages\\Index.cshtml.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAWwEwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T00:24:29.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Catalogue.cshtml",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\Catalogue.cshtml",
+              "RelativeDocumentMoniker": "MediaPlayer\\Pages\\Catalogue.cshtml",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\Catalogue.cshtml",
+              "RelativeToolTip": "MediaPlayer\\Pages\\Catalogue.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAADwvyAAAAAgAQAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-17T01:42:52.597Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Movie.cs",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\Movie.cs",
+              "RelativeDocumentMoniker": "MediaPlayer.Data.Factory\\Movie.cs",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\Movie.cs",
+              "RelativeToolTip": "MediaPlayer.Data.Factory\\Movie.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAjwHMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T01:29:52.379Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Catalogue.cshtml.cs",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\Catalogue.cshtml.cs",
+              "RelativeDocumentMoniker": "MediaPlayer\\Pages\\Catalogue.cshtml.cs",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\Catalogue.cshtml.cs",
+              "RelativeToolTip": "MediaPlayer\\Pages\\Catalogue.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T01:13:01.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IMovie.cs",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\Abstraction\\IMovie.cs",
+              "RelativeDocumentMoniker": "MediaPlayer.Data.Factory\\Abstraction\\IMovie.cs",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\Abstraction\\IMovie.cs",
+              "RelativeToolTip": "MediaPlayer.Data.Factory\\Abstraction\\IMovie.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowC0AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T01:29:57.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "MediaPlayer\\Pages\\Index.cshtml",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Pages\\Index.cshtml",
+              "RelativeToolTip": "MediaPlayer\\Pages\\Index.cshtml",
+              "ViewState": "AgIAABcAAAAAAAAAAADwvy8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-17T00:24:20.85Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "JDocument.cs",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\JDocument.cs",
+              "RelativeDocumentMoniker": "MediaPlayer.Common\\JDocument.cs",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\JDocument.cs",
+              "RelativeToolTip": "MediaPlayer.Common\\JDocument.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAuwDsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T00:54:41.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Program.cs",
+              "RelativeDocumentMoniker": "MediaPlayer\\Program.cs",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\Program.cs",
+              "RelativeToolTip": "MediaPlayer\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T00:54:22.305Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AppGenerator.cs",
+              "DocumentMoniker": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\AppGenerator.cs",
+              "RelativeDocumentMoniker": "MediaPlayer\\AppGenerator.cs",
+              "ToolTip": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\AppGenerator.cs",
+              "RelativeToolTip": "MediaPlayer\\AppGenerator.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAADwvzsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T00:47:51.759Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d3750d8a-574b-4fb3-b7e2-aa8af40e8231}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

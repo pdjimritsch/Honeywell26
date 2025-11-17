@@ -1,0 +1,42 @@
+﻿@page
+@model MediaPlayer.Pages.CatalogueModel
+@using MediaPlayer.Data.Factory.Abstraction;
+@using MediaPlayer.Data.Factory;
+@{
+    ViewData["Title"] = "MediaPlayer";
+}
+<div class="d-flex flex-column min-vh-100 min-vw-100 bg-black">
+    <main>
+        <div>
+            <span class="bg-primary-subtle text-black introduction">You may select any movie from the recently viewed list</span>
+        </div>
+        <div style="gap: 20px"><br /></div>
+        <form id="movie-form" role="form" method="post" enctype="multipart/form-data">
+            <table class="table table-bordered" role="table">
+                <thead>
+                    <tr>
+                        <th>Visitor ID</th>
+                        <th>FileName</th>
+                        <th>Size (in bytes)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var preview in Model.Movies)
+                    {
+                        var visitor = preview.Visitor;
+                        var token = (visitor == null) ? "" : visitor.Token.ToString();
+                        var title = preview.Title;
+                        var filename = preview.FileName;
+                        <tr>
+                            <td>@token</td>
+                            <td>
+                                <a href="#" onclick="const form = document.getElementById('movie-form'); const hidden = document.createElement('input'); hidden.type = 'hidden'; hidden.name = 'preview'; hidden.value = '@Url.Content(title)'; form.append(hidden); form.submit(); ">@title</a>
+                            </td>
+                            <td>@preview.ContentLength.ToString()</td>
+                        </tr>
+                    }
+                    </tbody>
+            </table>
+        </form>
+    </main>
+</div>

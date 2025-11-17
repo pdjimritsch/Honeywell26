@@ -1,0 +1,12 @@
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\bin\Debug\net10.0\MediaPlayer.Configuration.deps.json
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\bin\Debug\net10.0\MediaPlayer.Configuration.dll
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\bin\Debug\net10.0\MediaPlayer.Configuration.pdb
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\obj\Debug\net10.0\MediaPlayer.Configuration.csproj.AssemblyReference.cache
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\obj\Debug\net10.0\MediaPlayer.Configuration.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\obj\Debug\net10.0\MediaPlayer.Configuration.AssemblyInfoInputs.cache
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\obj\Debug\net10.0\MediaPlayer.Configuration.AssemblyInfo.cs
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\obj\Debug\net10.0\MediaPlayer.Configuration.csproj.CoreCompileInputs.cache
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\obj\Debug\net10.0\MediaPlayer.Configuration.dll
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\obj\Debug\net10.0\refint\MediaPlayer.Configuration.dll
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\obj\Debug\net10.0\MediaPlayer.Configuration.pdb
+C:\Dev\Remote\Honeywell\MediaPlayer\MediaPlayer.Configuration\obj\Debug\net10.0\ref\MediaPlayer.Configuration.dll

@@ -1,0 +1,40 @@
+﻿@page
+@model RecentMovieModel
+@{
+    ViewData["Title"] = "MediaPlayer";
+}
+<div class="d-flex flex-column min-vh-100 min-vw-100 bg-black">
+    <main>
+        <form role="form" method="post">
+            <div class="w-100 h-100 bg-black">
+                <video id="VideoPlayer" controls autoplay width="600" height="450" crossorigin="anonymous">
+                    @if (Model.Visitor == null)
+                    {
+                        <source src="@Url.Content($"~/videos/{AppGenerator.VideoTitle}")" type="@AppGenerator.VideoContentType" />
+                    }
+                    else
+                    {
+                        <source src="@Url.Content($"~/videos/{Model.Visitor.VideoTitle}")" type="@Model.Visitor.VideoContentType" />
+                    }
+                </video>
+            </div>
+        </form>
+    </main>
+</div>
+<script type="text/javascript">
+    const player = document.getElementById("VideoPlayer");
+    if (player !== null) {
+        try {
+            player.onended = function (e) {
+               // clear the video player buffer
+               player.source = '';
+               player.currentTime = 0;
+               player.load();
+              // return back to the index page
+              location.href = '@Url.Content("/Index")';
+            };
+        } catch {
+            location.href = '@Url.Content("/Index")';
+        }
+    }
+</script>
