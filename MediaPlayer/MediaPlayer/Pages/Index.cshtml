@@ -1,14 +1,19 @@
 ﻿@page
 @model IndexModel
 @using MediaPlayer.Configuration.Abstraction;
+@using ViewModels
 @inject IHostSettings AppProperties;
+@Html.AntiForgeryToken()
 @{
     ViewData["Title"] = "MediaPlayer";
 }
 <div class="d-flex flex-column min-vh-100 min-vw-100 bg-black">
     <main>
         <div>
-            <span class="bg-primary-subtle text-black introduction">Choose MP4 files to upload to the Video Catalogue</span>
+            @{
+                var template = AppGenerator.GetCurrentMessage();
+            }
+            <span id="advisor" class="bg-primary-subtle text-black @AppGenerator.GetMessageStyle(template)">@template.Message</span>
         </div>
         @if (AppGenerator.IsContentAppearing)
         {
@@ -16,7 +21,7 @@
                 <div style="gap: 20px"><br /></div>
                 <div>
                     <input id="uploader" type="file" title="Browse file(s)" class="bg-black text-white"
-                           asp-for="UploadedVideo"
+                           asp-for="UploadedVideos" multiple
                            formenctype="multipart/form-data"
                            accept=".mp3, .mp4, m4p, .mov, .avi, .wmv, .webm, mng, .rm" 
                            onchange="check_size();"
@@ -34,13 +39,14 @@
     function check_size() {
         const size_limit = new Number('@AppProperties.MaxMovieSize');
         const administrator = document.getElementById('administrator');
+        const advisor = document.getElementById('advisor');
         const uploader = document.getElementById('uploader');
         const selections = uploader.files;
         const selection = selections[0];
         const size = selection.size;
         if (size >= size_limit) {
             administrator.setAttribute('disabled', 'disabled');
-            alert(`The selected movie has been prohibited from viewing due to the size of ${size} bytes that exceeds the max. size of ${size_limit} for the movie.`)
+            alert(`The selected movie has been prohibited from viewing due to the size of ${size} bytes that exceeds the max. size of ${size_limit} for the movie.`);
         } else {
             administrator.removeAttribute('disabled');
         }

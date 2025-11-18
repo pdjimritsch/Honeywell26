@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.OutputCaching;
 
-using System.IO;
-
 namespace MediaPlayer.Pages;
 
 [OutputCache(Duration = 5)] public class IndexModel : PageModel
@@ -36,6 +34,8 @@ namespace MediaPlayer.Pages;
         _environment = environment;
 
         _settings = properties;
+
+        UploadedVideos = [];
     }
 
     #endregion
@@ -45,7 +45,7 @@ namespace MediaPlayer.Pages;
     /// <summary>
     /// Uploaded video
     /// </summary>
-    [BindProperty] public IFormFile? UploadedVideo { get; set; }
+    [BindProperty] public List<IFormFile> UploadedVideos { get; set; }
 
     /// <summary>
     /// Current session visitor
@@ -66,7 +66,45 @@ namespace MediaPlayer.Pages;
             AppGenerator.ContentDirectory = Path.Combine(_environment.ContentRootPath, "wwwroot");
         }
 
-        AppGenerator.IsContentAppearing = !AppGenerator.IsContentAppearing;
+        if (Request.Headers.ContainsKey("Referer"))
+        {
+            var previousPage = Request.Headers["Referer"].ToString();
+
+            if (!string.IsNullOrEmpty(previousPage) && previousPage.Contains("RecentMovie"))
+            {
+                // reset the form for the visitor to continue with movie upload 
+
+                AppGenerator.IsContentAppearing = false;
+
+                AppGenerator.MessageIndex = 0;
+            }
+            else
+            {
+                // display the controls for the visitor to upload the videos.
+
+                AppGenerator.IsContentAppearing = true;
+
+                AppGenerator.MessageIndex = 1;
+            }
+        }
+        else
+        {
+            AppGenerator.IsContentAppearing = !AppGenerator.IsContentAppearing;
+
+            if (AppGenerator.IsContentAppearing)
+            {
+                // display the controls for the visitor to upload the videos.
+
+                AppGenerator.MessageIndex = 1;
+            }
+            else
+            {
+                // reset the form for the visitor to continue with movie upload 
+
+                AppGenerator.MessageIndex = 0;
+            }
+        }
+
     }
 
     /// <summary>
@@ -74,90 +112,82 @@ namespace MediaPlayer.Pages;
     /// </summary>
     public IActionResult OnPost()
     {
-        if (UploadedVideo != null && !string.IsNullOrEmpty(UploadedVideo.FileName))
+        var videos = UploadedVideos;
+
+        var approved = videos.Count(v => v.Length <= (_settings?.MaxMovieSize ?? 0));
+
+        if (approved == 0)
         {
-            var reference = new FileInfo(UploadedVideo.FileName);
+            // The business unit had placed a maximum size for the movies to be enjoyed.
 
-            AppGenerator.VideoContentLength = UploadedVideo.Length;
+            // The same rule has been implemented within the page client-side.
 
-            AppGenerator.VideoContentType = UploadedVideo.ContentType;
+            AppGenerator.IsContentAppearing = true;
 
-            if (AppGenerator.VideoContentLength > (_settings?.MaxMovieSize ?? 0))
+            AppGenerator.MessageIndex = 0;
+
+            return RedirectToPagePermanent("Index");
+        }
+
+        // Get the current session visitor
+
+        Visitor = CurrentVisitor.Get(HttpContext);
+
+        if ((Visitor == null) && (videos.Count == 1))
+        {
+            // Assign the selected video for the current visitor
+
+            Visitor = CurrentVisitor.Set(HttpContext, videos[0]);
+        }
+        else if ((Visitor == null) && (videos.Count > 1))
+        {
+            // Create the visitor from the current session context
+
+            Visitor = CurrentVisitor.Set(HttpContext, null);
+        }
+        else if ((Visitor != null) && (videos.Count == 1))
+        {
+            // Assign the selected video for the current visitor
+
+            Visitor = CurrentVisitor.Set(HttpContext, videos[0], Visitor);
+        }
+
+        List<Movie> movies = [];
+
+        int count = 0;
+
+        foreach (var video in videos)
+        {
+            if (video.Length > (_settings?.MaxMovieSize ?? 0))
             {
-                // The business unit had placed a maximum size for the movies to be enjoyed.
+                // Large sized videos will be ignored
 
-                // The same rule has been implemented within the page client-side.
-
-                AppGenerator.IsContentAppearing = true;
-
-                return RedirectToPagePermanent("Index");
+                continue;
             }
 
-            AppGenerator.VideoTitle = reference.Name;
+            // Save the imported video
 
-            AppGenerator.VideoFileName = UploadedVideo.FileName;
-
-            AppGenerator.VideoFileExtension = reference.Extension;
-
-            string filename;
-
-            if (!string.IsNullOrEmpty(AppGenerator.ContentDirectory))
-            {
-                filename = Path.Combine(AppGenerator.ContentDirectory, "videos", AppGenerator.VideoFileName);
-            }
-            else
-            {
-                AppGenerator.ContentDirectory = AppContext.BaseDirectory;
-
-                filename = Path.Combine(AppContext.BaseDirectory, "wwwroot/videos", AppGenerator.VideoFileName);
-            }
-            
-            if (System.IO.File.Exists(filename))
-            {
-                reference = new FileInfo(filename);
-
-                if (reference.Length != AppGenerator.VideoContentLength)
-                {
-                    try { System.IO.File.Delete(filename); } finally { }
-
-                    using FileStream stream = new(filename, FileMode.Create, FileAccess.Write);
-
-                    UploadedVideo.CopyTo(stream);
-
-                    stream.Flush();
-
-                    stream.Close();
-                }
-            }
-            else
-            {
-                using FileStream stream = new(filename, FileMode.Create, FileAccess.Write);
-
-                UploadedVideo.CopyTo(stream);
-
-                stream.Flush();
-
-                stream.Close();
-            }
-
-            Visitor = CurrentVisitor.Get(HttpContext);
-
-            if (Visitor == null)
-            {
-                Visitor = CurrentVisitor.Set(HttpContext);
-            }
-            else
-            {
-                Visitor = CurrentVisitor.Set(HttpContext, Visitor);
-            }
+            var filename = AppGenerator.SaveVideo(video);
 
             var movie = TokenStore.Instance.Get(filename).Cast<Movie>().FirstOrDefault();
 
+            var reference = new FileInfo(video.FileName);
+
             if (movie == null)
             {
-                movie = new();
+                movie = new Movie();
 
-                movie.AddOrRemoveMovie(Visitor, filename);
+                Video presentation = new()
+                {
+                    ContentDirectory = AppGenerator.ContentDirectory,
+                    ContentLength = video.Length,
+                    ContentType = video.ContentType,
+                    FileExtension = reference.Extension,
+                    FileName = video.FileName,
+                    Title = reference.Name,
+                };
+
+                movie.AddOrRemoveMovie(Visitor, presentation, filename);
             }
             else
             {
@@ -165,25 +195,78 @@ namespace MediaPlayer.Pages;
 
                 if (visitors == null)
                 {
-                    movie.AddOrRemoveMovie(Visitor, filename);
+                    // Save the visitor's reference to the selected video
+
+                    Video presentation = new()
+                    {
+                        ContentDirectory = AppGenerator.ContentDirectory,
+                        ContentLength = video.Length,
+                        ContentType = video.ContentType,
+                        FileExtension = reference.Extension,
+                        FileName = video.FileName,
+                        Title = reference.Name,
+                    };
+
+
+                    movie.AddOrRemoveMovie(Visitor, presentation, filename);
                 }
                 else
                 {
-                    var count = visitors.Count(v => v.Equals(Visitor));
+                    count = visitors.Count(v => v.Equals(Visitor));
 
                     if (count == 0)
                     {
-                        movie.AddOrRemoveMovie(Visitor, filename);
+                        // Save the visitor's reference to the selected video
+
+                        Video presentation = new()
+                        {
+                            ContentDirectory = AppGenerator.ContentDirectory,
+                            ContentLength = video.Length,
+                            ContentType = video.ContentType,
+                            FileExtension = reference.Extension,
+                            FileName = video.FileName,
+                            Title = reference.Name,
+                        };
+
+                        movie.AddOrRemoveMovie(Visitor, presentation, filename);
                     }
                 }
             }
 
-            TokenStore.Instance.Add(filename, movie);
+            movies.Add(movie);
+        }
 
+        count = movies.Count;
+
+        foreach (var movie in movies)
+        {
+            if (!string.IsNullOrEmpty(movie.FileName))
+            {
+                TokenStore.Instance.Add(movie.FileName, movie);
+            }
+
+            if (count == 1)
+            {
+                // Save the visitor's reference to the selected video
+
+                AppGenerator.Movie = movie;
+
+                AppGenerator.IsContentAppearing = true;
+
+                return RedirectToPagePermanent("RecentMovie");
+            }
+        }
+
+        if (count > 0)
+        {
             AppGenerator.IsContentAppearing = true;
+
+            AppGenerator.RouteParameters = new List<Movie>(movies);
 
             return RedirectToPagePermanent("RecentMovie");
         }
+
+        AppGenerator.MessageIndex = 0;
 
         AppGenerator.IsContentAppearing = true;
 

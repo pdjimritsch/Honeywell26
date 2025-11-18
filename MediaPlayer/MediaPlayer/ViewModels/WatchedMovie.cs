@@ -4,7 +4,12 @@ namespace MediaPlayer.ViewModels;
 
 public sealed partial class WatchedMovie
 {
-    #region Properties;
+    #region Properties
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public string ContentDirectory { get; set; } = "";
 
     /// <summary>
     /// 
@@ -15,6 +20,11 @@ public sealed partial class WatchedMovie
     /// 
     /// </summary>
     public string ContentType { get; set; } = "";
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public string fileExtension { get; set; } = "";
 
     /// <summary>
     /// 

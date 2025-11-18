@@ -8,6 +8,11 @@ public partial interface IMovie
     #region Properties
 
     /// <summary>
+    /// 
+    /// </summary>
+    string? ContentDirectory { get; }
+
+    /// <summary>
     /// Movie size in bytes
     /// </summary>
     long ContentLength { get; }
@@ -18,9 +23,19 @@ public partial interface IMovie
     string? ContentType { get; }
 
     /// <summary>
+    /// 
+    /// </summary>
+    string? FileExtension { get; }
+
+    /// <summary>
     /// Movie filename reference
     /// </summary>
     string? FileName { get; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    string? Title { get; }
 
     /// <summary>
     /// 
@@ -43,7 +58,7 @@ public partial interface IMovie
     /// <param name="filename"></param>
     /// <param name="unregister"></param>
     /// <returns></returns>
-    bool AddOrRemoveMovie(IVisitor? visitor, string? filename, bool unregister = false);
+    bool AddOrRemoveMovie(IVisitor? visitor, IVideo video, string? filename, bool unregister = false);
 
     #endregion
 }

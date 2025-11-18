@@ -5,6 +5,7 @@
 @{
     ViewData["Title"] = "MediaPlayer";
 }
+@Html.AntiForgeryToken()
 <div class="d-flex flex-column min-vh-100 min-vw-100 bg-black">
     <main>
         <div>
@@ -12,8 +13,8 @@
         </div>
         <div style="gap: 20px"><br /></div>
         <form id="movie-form" role="form" method="post" enctype="multipart/form-data">
-            <table class="table table-bordered" role="table">
-                <thead>
+            <table class="table table-bordered table-striped table-dark table-responsive table-group-divider" role="table">
+                <thead class="thead-dark">
                     <tr>
                         <th>Visitor ID</th>
                         <th>FileName</th>
@@ -27,11 +28,9 @@
                         var token = (visitor == null) ? "" : visitor.Token.ToString();
                         var title = preview.Title;
                         var filename = preview.FileName;
-                        <tr>
+                        <tr onclick="displayMovie(this)" style="cursor:grab">
                             <td>@token</td>
-                            <td>
-                                <a href="#" onclick="const form = document.getElementById('movie-form'); const hidden = document.createElement('input'); hidden.type = 'hidden'; hidden.name = 'preview'; hidden.value = '@Url.Content(title)'; form.append(hidden); form.submit(); ">@title</a>
-                            </td>
+                            <td>@title</td>                         
                             <td>@preview.ContentLength.ToString()</td>
                         </tr>
                     }
@@ -40,3 +39,14 @@
         </form>
     </main>
 </div>
+<script type="text/javascript">
+    function displayMovie(tr) {
+        const form = document.getElementById('movie-form');
+        const hidden = document.createElement('input');
+        hidden.type = 'hidden';
+        hidden.name = 'preview';
+        hidden.value = tr.cells[1].textContent;
+        form.append(hidden); 
+        form.submit();
+    }
+</script>

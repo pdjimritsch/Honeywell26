@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj": {}
+    "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj": {}
   },
   "projects": {
-    "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj": {
+    "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj",
+        "projectUniqueName": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj",
         "projectName": "MediaPlayer.Security",
-        "projectPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj",
+        "projectPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj",
         "packagesPath": "C:\\Users\\pdjim\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\obj\\",
+        "outputPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,22 +1,41 @@
 ﻿@page
 @model RecentMovieModel
 @{
-    ViewData["Title"] = "MediaPlayer";
+    ViewData["Title"] = "Recent Movie";
 }
+@Html.AntiForgeryToken()
 <div class="d-flex flex-column min-vh-100 min-vw-100 bg-black">
     <main>
-        <form role="form" method="post">
-            <div class="w-100 h-100 bg-black">
-                <video id="VideoPlayer" controls autoplay width="600" height="450" crossorigin="anonymous">
-                    @if (Model.Visitor == null)
-                    {
-                        <source src="@Url.Content($"~/videos/{AppGenerator.VideoTitle}")" type="@AppGenerator.VideoContentType" />
-                    }
-                    else
-                    {
-                        <source src="@Url.Content($"~/videos/{Model.Visitor.VideoTitle}")" type="@Model.Visitor.VideoContentType" />
-                    }
-                </video>
+        <form id="administrator" method="post" asp-page="PostCapture" enctype="multipart/form-data">
+            <div class="w-100 h-80 bg-black">
+                @if (Model.PlayVideo && (Model.Movie != null) &&
+                                !string.IsNullOrEmpty(Model.Movie.Title) && !string.IsNullOrEmpty(Model.Movie.ContentType))
+                {
+                    <video id="VideoPlayer" controls autoplay width="600" height="450" crossorigin="anonymous">
+                        <source src="~/videos//@Url.Content(Model.Movie.Title)" type="@Model.Movie.ContentType" />
+                    </video>
+                }
+                else if (!Model.PlayVideo && Model.Selection.Count > 0)
+                {
+                    <table id="preview-table" role="table" class="table table-bordered table-striped table-dark table-responsive table-group-divider">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>FileName</th>
+                                <th>Size (in bytes)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var entry in Model.Selection)
+                            {
+                                <tr onclick="displayMovie(this)" style="cursor:grab">
+                                    <td>@entry.Title</td>
+                                    <td>@entry.ContentLength.ToString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                <button id="submission" type="submit" style="display:none;">Submit</button> 
             </div>
         </form>
     </main>
@@ -30,11 +49,31 @@
                player.source = '';
                player.currentTime = 0;
                player.load();
-              // return back to the index page
-              location.href = '@Url.Content("/Index")';
+                // return back to the index page
+                @AppGenerator.IsContentAppearing = false;
+                location.href = '@Url.Content("/Index")';
             };
         } catch {
+            // return back to the index page
+            @AppGenerator.IsContentAppearing = false;
             location.href = '@Url.Content("/Index")';
+        }
+    }
+    function displayMovie(tr) {
+        const button = document.getElementById('submission');
+        if (button !== null) {
+            const hidden = document.createElement('input');
+            hidden.type = 'hidden';
+            hidden.name = 'movie-preview';
+            hidden.id = 'movie-preview';
+            hidden.value = '';
+            if (tr !== null && tr.cells !== null && tr.cells.length === 2) {
+                hidden.value = tr.cells[0].textContent;
+            }
+            if (hidden.value.length > 0) {
+                button.append(hidden);
+                button.click();
+            }
         }
     }
 </script>

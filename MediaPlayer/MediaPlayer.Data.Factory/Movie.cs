@@ -3,6 +3,8 @@
 namespace MediaPlayer.Data.Factory;
 
 using Abstraction;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 /// <summary>
 /// Visited movie
@@ -27,24 +29,48 @@ public partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovi
 
     public Movie() : base() => _visitors = [];
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="video"></param>
+    public Movie(IVideo? video) : this()
+    {
+        Initialize(video);
+    }
+
     #endregion
 
     #region IMovie Members
 
     /// <summary>
+    /// 
+    /// </summary>
+    public string? ContentDirectory { get; private set; } = null!;
+
+    /// <summary>
     /// Movie size in bytes
     /// </summary>
-    public long ContentLength { get; private set; }
+    public long ContentLength { get; private set; } = 0;
 
     /// <summary>
     /// 
     /// </summary>
-    public string? ContentType { get; private set; }
+    public string? ContentType { get; private set; } = null!;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public string? FileExtension { get; private set; } = null!;
 
     /// <summary>
     /// Movie filename reference
     /// </summary>
-    public string? FileName { get; private set; }
+    public string? FileName { get; private set; } = null!;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public string? Title { get; private set; } = null!;
 
     /// <summary>
     /// 
@@ -63,7 +89,7 @@ public partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovi
     /// <param name="filename"></param>
     /// <param name="unregister"></param>
     /// <returns></returns>
-    public bool AddOrRemoveMovie(IVisitor? visitor, string? filename, bool unregister = false)
+    public bool AddOrRemoveMovie(IVisitor? visitor, IVideo? video, string? filename, bool unregister = false)
     {
         if (unregister)
         {
@@ -78,28 +104,42 @@ public partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovi
                 return any;
             }
         }
-        else if (string.IsNullOrEmpty(FileName) && !string.IsNullOrEmpty(filename) && (visitor != null))
+        else if (string.IsNullOrEmpty(FileName) && !string.IsNullOrEmpty(filename) && 
+            (visitor != null) && (video != null))
         {
             if (File.Exists(filename))
             {
+                ContentDirectory = video.ContentDirectory;
+
+                FileExtension = video.FileExtension;
+
                 FileName = filename;
 
-                ContentLength = visitor.VideoContentLength;
+                ContentLength = video.ContentLength;
 
-                ContentType = visitor.VideoContentType;
+                ContentType = video.ContentType;
+
+                Title = video.Title;
 
                 _visitors.Add(visitor);
 
                 return true;
             }
         }
-        else if (!string.IsNullOrEmpty(FileName) && !string.IsNullOrEmpty(filename) && (visitor != null))
+        else if (!string.IsNullOrEmpty(FileName) && !string.IsNullOrEmpty(filename) && 
+            (visitor != null) && (video != null))
         {
             if (FileName.Equals(filename, StringComparison.OrdinalIgnoreCase))
             {
-                ContentLength = visitor.VideoContentLength;
+                ContentDirectory = video.ContentDirectory;
 
-                ContentType = visitor.VideoContentType;
+                ContentLength = video.ContentLength;
+
+                ContentType = video.ContentType;
+
+                FileExtension = video.FileExtension;
+
+                Title = video.Title;
 
                 var any = _visitors.Exists(v => v.Token == visitor.Token);
 
@@ -188,6 +228,26 @@ public partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovi
         }
 
         return succeded;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="video"></param>
+    private void Initialize(IVideo? video)
+    {
+        if (video != null)
+        {
+            FileExtension = video.FileExtension;
+
+            FileName = video.FileName;
+
+            ContentLength = video.ContentLength;
+
+            ContentType = video.ContentType;
+
+            Title = video.Title;
+        }
     }
 
     #endregion

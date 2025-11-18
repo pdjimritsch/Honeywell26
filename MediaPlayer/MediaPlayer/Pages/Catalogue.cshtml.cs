@@ -85,6 +85,18 @@ public class CatalogueModel : PageModel
 
         AppGenerator.IsContentAppearing = true;
 
+        var video = new Video
+        {
+            ContentDirectory = AppGenerator.ContentDirectory,
+            ContentType = movie.ContentType,
+            ContentLength = movie.ContentLength,
+            FileExtension = movie.fileExtension,
+            FileName = movie.FileName,
+            Title = movie.Title,
+        };
+
+        AppGenerator.Movie = new(video);
+
         if (visitor != null)
         {
             visitor.VideoContentLength = movie.ContentLength;
@@ -130,8 +142,10 @@ public class CatalogueModel : PageModel
                 {
                     Movies.Add(new WatchedMovie
                     {
+                        ContentDirectory = AppGenerator.ContentDirectory ?? string.Empty,
                         ContentLength = movie.ContentLength,
                         ContentType = movie.ContentType ?? string.Empty,
+                        fileExtension = reference.Extension,
                         FileName = filename ?? string.Empty,
                         Title = name ?? string.Empty,
                         Visitor = visitor

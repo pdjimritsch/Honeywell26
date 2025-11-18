@@ -31,6 +31,12 @@ span.introduction {
     min-width: 100%
 }
 
+span.error {
+    background-color: white;
+    color: red;
+    max-height: 30px;
+    min-width: 100%
+}
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;

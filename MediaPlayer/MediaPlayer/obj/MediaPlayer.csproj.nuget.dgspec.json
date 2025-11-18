@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\MediaPlayer.csproj": {}
+    "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\MediaPlayer.csproj": {}
   },
   "projects": {
-    "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\MediaPlayer.Common.csproj": {
+    "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\MediaPlayer.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\MediaPlayer.Common.csproj",
+        "projectUniqueName": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\MediaPlayer.Common.csproj",
         "projectName": "MediaPlayer.Common",
-        "projectPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\MediaPlayer.Common.csproj",
+        "projectPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\MediaPlayer.Common.csproj",
         "packagesPath": "C:\\Users\\pdjim\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\obj\\",
+        "outputPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -359,14 +359,14 @@
         }
       }
     },
-    "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\MediaPlayer.Configuration.csproj": {
+    "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\MediaPlayer.Configuration.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\MediaPlayer.Configuration.csproj",
+        "projectUniqueName": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\MediaPlayer.Configuration.csproj",
         "projectName": "MediaPlayer.Configuration",
-        "projectPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\MediaPlayer.Configuration.csproj",
+        "projectPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\MediaPlayer.Configuration.csproj",
         "packagesPath": "C:\\Users\\pdjim\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\obj\\",
+        "outputPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -722,14 +722,14 @@
         }
       }
     },
-    "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj": {
+    "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj",
+        "projectUniqueName": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj",
         "projectName": "MediaPlayer.Data.Factory",
-        "projectPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj",
+        "projectPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj",
         "packagesPath": "C:\\Users\\pdjim\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\obj\\",
+        "outputPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1081,14 +1081,14 @@
         }
       }
     },
-    "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj": {
+    "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj",
+        "projectUniqueName": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj",
         "projectName": "MediaPlayer.Security",
-        "projectPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj",
+        "projectPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj",
         "packagesPath": "C:\\Users\\pdjim\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\obj\\",
+        "outputPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1432,14 +1432,14 @@
         }
       }
     },
-    "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\MediaPlayer.csproj": {
+    "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\MediaPlayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\MediaPlayer.csproj",
+        "projectUniqueName": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\MediaPlayer.csproj",
         "projectName": "MediaPlayer",
-        "projectPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\MediaPlayer.csproj",
+        "projectPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\MediaPlayer.csproj",
         "packagesPath": "C:\\Users\\pdjim\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\obj\\",
+        "outputPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1462,17 +1462,17 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\MediaPlayer.Common.csproj": {
-                "projectPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\MediaPlayer.Common.csproj"
+              "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\MediaPlayer.Common.csproj": {
+                "projectPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Common\\MediaPlayer.Common.csproj"
               },
-              "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\MediaPlayer.Configuration.csproj": {
-                "projectPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\MediaPlayer.Configuration.csproj"
+              "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\MediaPlayer.Configuration.csproj": {
+                "projectPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Configuration\\MediaPlayer.Configuration.csproj"
               },
-              "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj": {
-                "projectPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj"
+              "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj": {
+                "projectPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Data.Factory\\MediaPlayer.Data.Factory.csproj"
               },
-              "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj": {
-                "projectPath": "C:\\Dev\\Remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj"
+              "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj": {
+                "projectPath": "C:\\dev\\remote\\Honeywell\\Honeywell26\\MediaPlayer\\MediaPlayer.Security\\MediaPlayer.Security.csproj"
               }
             }
           }

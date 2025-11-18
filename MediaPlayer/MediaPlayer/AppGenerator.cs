@@ -4,6 +4,8 @@ using MediaPlayer.Security.Abstraction;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.RateLimiting;
+
+using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -14,6 +16,8 @@ namespace MediaPlayer;
 
 using Extensions;
 using MediaPlayer.Configuration.Abstraction;
+using MediaPlayer.Data.Factory;
+using MediaPlayer.ViewModels;
 using Microsoft.AspNetCore.HttpLogging;
 
 /// <summary>
@@ -26,38 +30,58 @@ public static partial class AppGenerator
     /// <summary>
     /// 
     /// </summary>
-    public static string? ContentDirectory = null!;
+    internal static string? ContentDirectory = null!;
 
     /// <summary>
     /// 
     /// </summary>
-    public static bool IsContentAppearing = true;
+    internal static bool IsContentAppearing = true;
 
     /// <summary>
     /// 
     /// </summary>
-    public static string? VideoContentType = null!;
+    internal static string? VideoContentType = null!;
 
     /// <summary>
     /// 
     /// </summary>
-    public static long VideoContentLength = 0;
+    internal static long VideoContentLength = 0;
 
     /// <summary>
     /// 
     /// </summary>
-    public static string? VideoFileExtension = null!;
+    internal static string? VideoFileExtension = null!;
 
     /// <summary>
     /// Video filename with file extension
     /// </summary>
-    public static string? VideoFileName = null!;
+    internal static string? VideoFileName = null!;
 
     /// <summary>
     /// 
     /// </summary>
-    public static string? VideoTitle = null!;
+    internal static string? VideoTitle = null!;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    internal static int MessageIndex = 0;
+
+    /// <summary>
+    /// Retains customised banner content.
+    /// </summary>
+    internal static Dictionary<int, MessageTemplate> Messages = [];
+
+    /// <summary>
+    /// 
+    /// </summary>
+    internal static Movie? Movie = default;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    internal static object? RouteParameters = null!;
+    
     #endregion
 
     #region Functions
@@ -384,6 +408,84 @@ public static partial class AppGenerator
         var application = builder.BuildApplication(properties.Configuration, appRoot);
 
         application?.Run();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    internal static MessageTemplate GetCurrentMessage()
+    {
+        if ((Messages.Count == 0) || (MessageIndex < 0) || (MessageIndex >= Messages.Count))
+            return new MessageTemplate(string.Empty, MessageTemplateType.Error);
+
+        return Messages[MessageIndex];
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="template"></param>
+    /// <returns></returns>
+    internal static string GetMessageStyle(MessageTemplate template)
+    {
+        return template.Type == MessageTemplateType.Error ? "warning" : "information";
+    }
+
+    /// <summary>
+    /// Imports the video into the video folder
+    /// </summary>
+    /// <param name="video">
+    /// Selected video resource.
+    /// </param>
+    internal static string SaveVideo(IFormFile? video)
+    {
+        string filename = string.Empty;
+
+        if ((video != null) && !string.IsNullOrEmpty(video.FileName))
+        {
+
+            if (!string.IsNullOrEmpty(ContentDirectory))
+            {
+                filename = Path.Combine(ContentDirectory, "videos", video.FileName);
+            }
+            else
+            {
+                ContentDirectory = AppContext.BaseDirectory;
+
+                filename = Path.Combine(AppContext.BaseDirectory, "wwwroot/videos", video.FileName);
+            }
+
+            if (File.Exists(filename))
+            {
+                var reference = new FileInfo(filename);
+
+                if (reference.Length != video.Length)
+                {
+                    try { File.Delete(filename); } finally { }
+
+                    using FileStream stream = new(filename, FileMode.Create, FileAccess.Write);
+
+                    video.CopyTo(stream);
+
+                    stream.Flush();
+
+                    stream.Close();
+                }
+            }
+            else
+            {
+                using FileStream stream = new(filename, FileMode.Create, FileAccess.Write);
+
+                video.CopyTo(stream);
+
+                stream.Flush(true);
+
+                stream.Close();
+            }
+        }
+
+        return filename;
     }
 
     #endregion
