@@ -2,7 +2,7 @@ using MediaPlayer.Data.Factory;
 using MediaPlayer.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using static System.Collections.Specialized.BitVector32;
+using System.Text;
 
 namespace MediaPlayer.Pages;
 
@@ -57,11 +57,15 @@ public class PostCaptureModel : PageModel
     /// <returns></returns>
     public IActionResult OnPost() 
     {
-        var parameters = AppGenerator.RouteParameters as IEnumerable<Movie>;
+        var sequence = HttpContext.Session.Get(RouteParameters.Key);
+
+        var parameters = RouteParameters.Parse(Encoding.UTF8.GetString(sequence ?? []));
 
         if (parameters != null)
         {
-            Selection = new(parameters);
+            Selection = [];
+
+            Selection.AddRange(parameters.Movies);
         }
 
         if (Selection.Count > 0)
@@ -72,7 +76,14 @@ public class PostCaptureModel : PageModel
             {
                 title = Request.Form["movie-preview"].ToString();
 
-                AppGenerator.Movie = Selection.FirstOrDefault(mv => mv.Title == title);
+                var preview = Selection.FirstOrDefault(mv => mv.Title == title);
+
+                if (preview != null)
+                {
+                    var bytes = Encoding.UTF8.GetBytes(preview.ToString().ToCharArray());
+
+                    HttpContext.Session.Set(Movie.Key, bytes);
+                }
             }
         }
 

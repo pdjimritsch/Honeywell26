@@ -1,16 +1,60 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MediaPlayer.Data.Factory;
 
 using Abstraction;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 /// <summary>
 /// Visited movie
 /// </summary>
-public partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovie>
+[ImmutableObject(true)] 
+public sealed partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovie>
 {
+    #region Shared Services
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="content"></param>
+    /// <returns></returns>
+    public static Movie? Parse(string? content)
+    {
+        Movie? movie = default;
+
+        if (!string.IsNullOrWhiteSpace(content))
+        {
+            JsonSerializerOptions options = new()
+            {
+                AllowTrailingCommas = false,
+                IncludeFields = false,
+                MaxDepth = int.MaxValue,
+            };
+
+            try
+            {
+                movie = JsonSerializer.Deserialize<Movie>(content, options);
+            }
+            catch (Exception ex)
+            {
+                if (Debugger.IsAttached)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+
+                movie = default;
+            }
+        }
+
+        return movie;
+    }
+
+    #endregion
+
     #region Members
 
     /// <summary>
@@ -21,7 +65,7 @@ public partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovi
     /// <summary>
     /// 
     /// </summary>
-    private readonly List<IVisitor> _visitors;
+    private readonly List<Visitor> _visitors;
 
     #endregion
 
@@ -45,42 +89,69 @@ public partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovi
     /// <summary>
     /// 
     /// </summary>
+    [JsonInclude]
+    [JsonPropertyOrder(0)]
+    [JsonPropertyName(nameof(ContentDirectory))]
     public string? ContentDirectory { get; private set; } = null!;
 
     /// <summary>
     /// Movie size in bytes
     /// </summary>
-    public long ContentLength { get; private set; } = 0;
+    [JsonInclude]
+    [JsonPropertyOrder(1)]
+    [JsonPropertyName(nameof(ContentLength))]
+    [JsonRequired]
+    public long ContentLength { get; set; } = 0;
 
     /// <summary>
     /// 
     /// </summary>
-    public string? ContentType { get; private set; } = null!;
+    [JsonInclude]
+    [JsonPropertyOrder(2)]
+    [JsonPropertyName(nameof(ContentType))]
+    public string? ContentType { get; set; } = null!;
 
     /// <summary>
     /// 
     /// </summary>
-    public string? FileExtension { get; private set; } = null!;
+    [JsonInclude]
+    [JsonPropertyOrder(3)]
+    [JsonPropertyName(nameof(FileExtension))]
+    public string? FileExtension { get; set; } = null!;
 
     /// <summary>
     /// Movie filename reference
     /// </summary>
-    public string? FileName { get; private set; } = null!;
+    [JsonInclude]
+    [JsonPropertyOrder(4)]
+    [JsonPropertyName(nameof(FileName))]
+    public string? FileName { get; set; } = null!;
 
     /// <summary>
     /// 
     /// </summary>
-    public string? Title { get; private set; } = null!;
+    [JsonInclude]
+    [JsonPropertyOrder(5)]
+    [JsonPropertyName(nameof(Title))]
+    public string? Title { get; set; } = null!;
 
     /// <summary>
     /// 
     /// </summary>
-    public Guid Token { get; private set; } = Guid.NewGuid();
+    [JsonInclude]
+    [JsonPropertyOrder(6)]
+    [JsonPropertyName(nameof(Token))]
+    [Required]
+    public Guid Token { get; set; } = Guid.NewGuid();
 
     /// <summary>
     /// 
     /// </summary>
-    public IEnumerable<IVisitor> Visitors => _visitors;
+    [JsonInclude]
+    [JsonPropertyOrder(7)]
+    [JsonPropertyName(nameof(Visitors))]
+    [Required]
+    public List<Visitor> Visitors {  get => _visitors; set => _visitors.AddRange(value); }
 
     /// <summary>
     /// Registers or unregisters the viewed movie.
@@ -89,7 +160,7 @@ public partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovi
     /// <param name="filename"></param>
     /// <param name="unregister"></param>
     /// <returns></returns>
-    public bool AddOrRemoveMovie(IVisitor? visitor, IVideo? video, string? filename, bool unregister = false)
+    public bool AddOrRemoveMovie(Visitor? visitor, IVideo? video, string? filename, bool unregister = false)
     {
         if (unregister)
         {
@@ -192,15 +263,21 @@ public partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovi
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
+    public override bool Equals(object? obj) => IsEqualTo(this, obj as IMovie);
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <returns></returns>
     public override int GetHashCode() => Token.GetHashCode();
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="obj"></param>
     /// <returns></returns>
-    public override bool Equals(object? obj) => IsEqualTo(this, obj as IMovie);
+    public override string ToString() => GetProperties(this);
 
     #endregion
 
@@ -228,6 +305,23 @@ public partial class Movie : IMovie, IEquatable<IMovie>, IEqualityComparer<IMovi
         }
 
         return succeded;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="movie"></param>
+    /// <returns></returns>
+    private static string GetProperties(Movie movie)
+    {
+        JsonSerializerOptions options = new()
+        {
+            AllowTrailingCommas = false,
+            IncludeFields = false,
+            MaxDepth = int.MaxValue,
+        };
+
+        return JsonSerializer.Serialize(movie, options);
     }
 
     /// <summary>

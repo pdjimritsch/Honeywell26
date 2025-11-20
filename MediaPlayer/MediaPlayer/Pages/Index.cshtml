@@ -11,11 +11,11 @@
     <main>
         <div>
             @{
-                var template = AppGenerator.GetCurrentMessage();
+                var template = AppGenerator.GetCurrentMessage(Model.Visitor?.MessageIndex ?? 0);
             }
             <span id="advisor" class="bg-primary-subtle text-black @AppGenerator.GetMessageStyle(template)">@template.Message</span>
         </div>
-        @if (AppGenerator.IsContentAppearing)
+        @if (Model.Visitor?.IsContentAppearing ?? false)
         {
             <form role="form" method="post" enctype="multipart/form-data">
                 <div style="gap: 20px"><br /></div>
@@ -29,7 +29,7 @@
                 </div>
                 <div style="gap: 20px"><br /></div>
                 <div>
-                    <input id="administrator" type="submit" title="Upload" class="bg-primary text-white" />
+                    <input id="administrator" type="submit" title="Upload" class="bg-danger text-white" />
                 </div>
             </form>
         }
@@ -39,16 +39,17 @@
     function check_size() {
         const size_limit = new Number('@AppProperties.MaxMovieSize');
         const administrator = document.getElementById('administrator');
-        const advisor = document.getElementById('advisor');
         const uploader = document.getElementById('uploader');
         const selections = uploader.files;
         const selection = selections[0];
         const size = selection.size;
         if (size >= size_limit) {
             administrator.setAttribute('disabled', 'disabled');
+            administrator.className = "bg-danger text-white";
             alert(`The selected movie has been prohibited from viewing due to the size of ${size} bytes that exceeds the max. size of ${size_limit} for the movie.`);
         } else {
             administrator.removeAttribute('disabled');
+            administrator.className = "bg-primary text-white";
         }
     }
 </script>

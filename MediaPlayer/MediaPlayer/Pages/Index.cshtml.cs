@@ -1,9 +1,11 @@
 using MediaPlayer.Configuration.Abstraction;
 using MediaPlayer.Data.Factory;
+using MediaPlayer.Data.Factory.Abstraction;
 using MediaPlayer.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.OutputCaching;
+using System.Text;
 
 namespace MediaPlayer.Pages;
 
@@ -66,6 +68,8 @@ namespace MediaPlayer.Pages;
             AppGenerator.ContentDirectory = Path.Combine(_environment.ContentRootPath, "wwwroot");
         }
 
+        Visitor = CurrentVisitor.Get(HttpContext);
+
         if (Request.Headers.ContainsKey("Referer"))
         {
             var previousPage = Request.Headers["Referer"].ToString();
@@ -74,37 +78,40 @@ namespace MediaPlayer.Pages;
             {
                 // reset the form for the visitor to continue with movie upload 
 
-                AppGenerator.IsContentAppearing = false;
+                Visitor?.IsContentAppearing = false;
 
-                AppGenerator.MessageIndex = 0;
+                Visitor?.MessageIndex = 0;
             }
             else
             {
                 // display the controls for the visitor to upload the videos.
 
-                AppGenerator.IsContentAppearing = true;
+                Visitor?.IsContentAppearing = true;
 
-                AppGenerator.MessageIndex = 1;
+                Visitor?.MessageIndex = 1;
             }
         }
         else
         {
-            AppGenerator.IsContentAppearing = !AppGenerator.IsContentAppearing;
+            Visitor?.IsContentAppearing = !(Visitor?.IsContentAppearing ?? false);
 
-            if (AppGenerator.IsContentAppearing)
+            if (Visitor?.IsContentAppearing ?? false)
             {
                 // display the controls for the visitor to upload the videos.
 
-                AppGenerator.MessageIndex = 1;
+                Visitor?.IsContentAppearing = !(Visitor?.IsContentAppearing ?? false);
+
+                Visitor?.MessageIndex = 1;
             }
             else
             {
                 // reset the form for the visitor to continue with movie upload 
 
-                AppGenerator.MessageIndex = 0;
+                Visitor?.MessageIndex = 0;
             }
         }
 
+        CurrentVisitor.Set(HttpContext, null, Visitor);
     }
 
     /// <summary>
@@ -122,9 +129,9 @@ namespace MediaPlayer.Pages;
 
             // The same rule has been implemented within the page client-side.
 
-            AppGenerator.IsContentAppearing = true;
+            Visitor?.IsContentAppearing = true;
 
-            AppGenerator.MessageIndex = 0;
+            Visitor?.MessageIndex = 0;
 
             return RedirectToPagePermanent("Index");
         }
@@ -249,9 +256,9 @@ namespace MediaPlayer.Pages;
             {
                 // Save the visitor's reference to the selected video
 
-                AppGenerator.Movie = movie;
+                HttpContext.Session.Set(nameof(Movie), Encoding.UTF8.GetBytes(movie.ToString().ToCharArray()));
 
-                AppGenerator.IsContentAppearing = true;
+                Visitor?.IsContentAppearing = true;
 
                 return RedirectToPagePermanent("RecentMovie");
             }
@@ -259,16 +266,24 @@ namespace MediaPlayer.Pages;
 
         if (count > 0)
         {
-            AppGenerator.IsContentAppearing = true;
+            Visitor?.IsContentAppearing = true;
 
-            AppGenerator.RouteParameters = new List<Movie>(movies);
+            RouteParameters parameters = new();
+
+            parameters.Movies.AddRange(movies);
+
+            HttpContext.Session.Remove(nameof(Movie)); // Multiple movies have been selected
+
+            HttpContext.Session.Set(RouteParameters.Key, Encoding.UTF8.GetBytes(parameters.ToString().ToCharArray()));
 
             return RedirectToPagePermanent("RecentMovie");
         }
 
-        AppGenerator.MessageIndex = 0;
+        Visitor?.MessageIndex = 0;
 
-        AppGenerator.IsContentAppearing = true;
+        Visitor?.IsContentAppearing = true;
+
+        CurrentVisitor.Set(HttpContext, null, Visitor);
 
         return RedirectToPagePermanent("Index");
     }

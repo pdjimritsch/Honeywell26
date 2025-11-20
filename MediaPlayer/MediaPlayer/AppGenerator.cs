@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.RateLimiting;
 
-using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -16,7 +15,6 @@ namespace MediaPlayer;
 
 using Extensions;
 using MediaPlayer.Configuration.Abstraction;
-using MediaPlayer.Data.Factory;
 using MediaPlayer.ViewModels;
 using Microsoft.AspNetCore.HttpLogging;
 
@@ -33,54 +31,9 @@ public static partial class AppGenerator
     internal static string? ContentDirectory = null!;
 
     /// <summary>
-    /// 
-    /// </summary>
-    internal static bool IsContentAppearing = true;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    internal static string? VideoContentType = null!;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    internal static long VideoContentLength = 0;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    internal static string? VideoFileExtension = null!;
-
-    /// <summary>
-    /// Video filename with file extension
-    /// </summary>
-    internal static string? VideoFileName = null!;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    internal static string? VideoTitle = null!;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    internal static int MessageIndex = 0;
-
-    /// <summary>
     /// Retains customised banner content.
     /// </summary>
     internal static Dictionary<int, MessageTemplate> Messages = [];
-
-    /// <summary>
-    /// 
-    /// </summary>
-    internal static Movie? Movie = default;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    internal static object? RouteParameters = null!;
     
     #endregion
 
@@ -414,12 +367,12 @@ public static partial class AppGenerator
     /// 
     /// </summary>
     /// <returns></returns>
-    internal static MessageTemplate GetCurrentMessage()
+    internal static MessageTemplate GetCurrentMessage(int index)
     {
-        if ((Messages.Count == 0) || (MessageIndex < 0) || (MessageIndex >= Messages.Count))
+        if ((Messages.Count == 0) || (index < 0) || (index >= Messages.Count))
             return new MessageTemplate(string.Empty, MessageTemplateType.Error);
 
-        return Messages[MessageIndex];
+        return Messages[index];
     }
 
     /// <summary>

@@ -2,6 +2,7 @@ using MediaPlayer.Data.Factory;
 using MediaPlayer.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text;
 
 namespace MediaPlayer.Pages;
 
@@ -69,34 +70,38 @@ public class RecentMovieModel : PageModel
     /// </summary>
     public void OnGet()
     {
+        Visitor = CurrentVisitor.Get(HttpContext);
+
         if (Request.Headers.ContainsKey("Referer"))
         {
             var previousPage = Request.Headers["Referer"].ToString();
 
             if (!string.IsNullOrEmpty(previousPage) && previousPage.Contains("Index"))
             {
-                AppGenerator.IsContentAppearing = true;
+                Visitor?.IsContentAppearing = true;
             }
             else if (!string.IsNullOrEmpty(previousPage) && previousPage.Contains("Catalogue"))
             {
-                AppGenerator.IsContentAppearing = true;
+                Visitor?.IsContentAppearing = true;
             }
         }
 
-        Movie = AppGenerator.Movie;
+        Movie = Movie.Parse(HttpContext.Session.GetString(nameof(Movie)));
 
         PlayVideo = (Movie != null);
 
-        var parameters = AppGenerator.RouteParameters as IEnumerable<Movie>;
+        var sequence = HttpContext.Session.Get(RouteParameters.Key);
+
+        var parameters = RouteParameters.Parse(Encoding.UTF8.GetString(sequence ?? []));
 
         if (parameters != null)
         {
-            Selection = new(parameters);
+            Selection = parameters?.Movies ?? [];
         }
 
-        AppGenerator.MessageIndex = 2;
+        Visitor?.MessageIndex = 2;
 
-        Visitor = CurrentVisitor.Get(HttpContext);
+        CurrentVisitor.Set(HttpContext, null, Visitor);
     }
 
     #endregion

@@ -50,12 +50,12 @@
                player.currentTime = 0;
                player.load();
                 // return back to the index page
-                @AppGenerator.IsContentAppearing = false;
+                @Model.Visitor?.IsContentAppearing = false;
                 location.href = '@Url.Content("/Index")';
             };
         } catch {
             // return back to the index page
-            @AppGenerator.IsContentAppearing = false;
+            @Model.Visitor?.IsContentAppearing = false;
             location.href = '@Url.Content("/Index")';
         }
     }

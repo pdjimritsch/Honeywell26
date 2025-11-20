@@ -17,6 +17,11 @@ public partial interface IVisitor
     bool IsContentAppearing { get; set; }
 
     /// <summary>
+    /// 
+    /// </summary>
+    int MessageIndex { get; set; }
+
+    /// <summary>
     /// Unique visitor identity
     /// </summary>
     Guid Token { get; }

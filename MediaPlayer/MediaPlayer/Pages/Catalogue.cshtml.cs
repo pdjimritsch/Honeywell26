@@ -4,6 +4,7 @@ using MediaPlayer.Helpers;
 using MediaPlayer.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text;
 
 namespace MediaPlayer.Pages;
 
@@ -55,8 +56,6 @@ public class CatalogueModel : PageModel
         {
             // The visitor request to watch the selected movie was aborted due to technical difficulties
 
-            AppGenerator.IsContentAppearing = true;
-
             return RedirectToPagePermanent("Index");
         }
 
@@ -70,20 +69,8 @@ public class CatalogueModel : PageModel
         {
             // The visitor request to watch the selected movie was aborted due to technical difficulties
 
-            AppGenerator.IsContentAppearing = true;
-
             return RedirectToPagePermanent("Index");
         }
-
-        AppGenerator.VideoFileName = movie.FileName;
-
-        AppGenerator.VideoContentLength = movie.ContentLength;
-
-        AppGenerator.VideoContentType = movie.ContentType;
-
-        AppGenerator.VideoTitle = movie.Title;
-
-        AppGenerator.IsContentAppearing = true;
 
         var video = new Video
         {
@@ -95,7 +82,7 @@ public class CatalogueModel : PageModel
             Title = movie.Title,
         };
 
-        AppGenerator.Movie = new(video);
+        HttpContext.Session.Set(nameof(Movie), Encoding.UTF8.GetBytes(new Movie(video).ToString().ToCharArray()));
 
         if (visitor != null)
         {
@@ -109,6 +96,8 @@ public class CatalogueModel : PageModel
 
             visitor.IsContentAppearing = true;
         }
+
+        CurrentVisitor.Set(HttpContext, null, visitor);
 
         return RedirectToPagePermanent("RecentMovie");
     }

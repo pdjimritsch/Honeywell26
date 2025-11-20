@@ -15,37 +15,37 @@ public partial interface IMovie
     /// <summary>
     /// Movie size in bytes
     /// </summary>
-    long ContentLength { get; }
+    long ContentLength { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
-    string? ContentType { get; }
+    string? ContentType { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
-    string? FileExtension { get; }
+    string? FileExtension { get; set; }
 
     /// <summary>
     /// Movie filename reference
     /// </summary>
-    string? FileName { get; }
+    string? FileName { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
-    string? Title { get; }
+    string? Title { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
-    Guid Token { get; } 
+    Guid Token { get; set; } 
 
     /// <summary>
     /// 
     /// </summary>
-    IEnumerable<IVisitor> Visitors { get; }
+    List<Visitor> Visitors { get; set; }
 
     #endregion
 
@@ -58,7 +58,7 @@ public partial interface IMovie
     /// <param name="filename"></param>
     /// <param name="unregister"></param>
     /// <returns></returns>
-    bool AddOrRemoveMovie(IVisitor? visitor, IVideo video, string? filename, bool unregister = false);
+    bool AddOrRemoveMovie(Visitor? visitor, IVideo video, string? filename, bool unregister = false);
 
     #endregion
 }

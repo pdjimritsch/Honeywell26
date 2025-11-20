@@ -1,9 +1,9 @@
-﻿using System.Text.Json;
-using System.Text.Json.Nodes;
-
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.Threading;
 using Newtonsoft.Json;
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace MediaPlayer.Common;
 
@@ -1110,6 +1110,104 @@ public static partial class JDocument
 
             return await Task.FromResult(response);
         });
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="content"></param>
+    /// <returns></returns>
+    public static (JsonDocument?, Exception?) ParseContent(string? content)
+    {
+        JsonDocument? document = default;
+
+        Exception? error = default;
+
+        if (!string.IsNullOrEmpty(content))
+        {
+            try
+            {
+                var resource = Path.GetTempFileName();
+
+                using var stream = File.Open(resource, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write);
+
+                stream.Write(Encoding.UTF8.GetBytes(content));
+
+                stream.Flush();
+
+                stream.Close();
+
+                using FileStream channel = File.Open(resource, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+                JsonDocumentOptions options = new()
+                {
+                    AllowTrailingCommas = false,
+                    CommentHandling = JsonCommentHandling.Skip,
+                    MaxDepth = int.MaxValue,
+                };
+
+                document = JsonDocument.Parse(channel, options);
+
+                channel.Close();
+
+                File.Delete(resource);
+            }
+            catch (Exception violation)
+            {
+                error = violation;  
+            }
+        }
+
+        return (document, error);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="content"></param>
+    /// <returns></returns>
+    public static async Task<(JsonDocument?, Exception?)> ParseContentAsync(string? content)
+    {
+        JsonDocument? document = default;
+
+        Exception? error = default;
+
+        if (!string.IsNullOrEmpty(content))
+        {
+            try
+            {
+                var resource = Path.GetTempFileName();
+
+                using var stream = File.Open(resource, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Write);
+
+                await stream.WriteAsync(Encoding.UTF8.GetBytes(content));
+
+                await stream.FlushAsync();
+
+                stream.Close();
+
+                using FileStream channel = File.Open(resource, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+                JsonDocumentOptions options = new()
+                {
+                    AllowTrailingCommas = false,
+                    CommentHandling = JsonCommentHandling.Skip,
+                    MaxDepth = int.MaxValue,
+                };
+
+                document = JsonDocument.Parse(channel, options);
+
+                channel.Close();
+
+                File.Delete(resource);
+            }
+            catch (Exception violation)
+            {
+                error = violation;
+            }
+        }
+
+        return await Task.FromResult((document, error));
     }
 
     /// <summary>

@@ -1,10 +1,12 @@
-﻿using System.Text.Json;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace MediaPlayer.Data.Factory;
 using Abstraction;
 
-public partial class Visitor : IVisitor
+[ImmutableObject(true)] public sealed partial class Visitor : IVisitor
 {
     #region Shared Properties and Services
 
@@ -31,7 +33,19 @@ public partial class Visitor : IVisitor
                 MaxDepth = int.MaxValue,
             };
 
-            visitor = JsonSerializer.Deserialize<Visitor>(content, options);
+            try
+            {
+                visitor = JsonSerializer.Deserialize<Visitor>(content, options);
+            }
+            catch (Exception ex)
+            {
+                if (Debugger.IsAttached)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+
+                visitor = default;
+            }
         }
 
         return visitor;
@@ -58,11 +72,17 @@ public partial class Visitor : IVisitor
     [JsonRequired]
     public bool IsContentAppearing { get; set; } = true;
 
+    [JsonInclude]
+    [JsonPropertyOrder(2)]
+    [JsonPropertyName(nameof(MessageIndex))]
+    [JsonRequired]
+    public int MessageIndex { get; set; } = -1;
+
     /// <summary>
     /// 
     /// </summary>
     [JsonInclude]
-    [JsonPropertyOrder(2)]
+    [JsonPropertyOrder(3)]
     [JsonPropertyName(nameof(Token))]
     [JsonRequired]
     public Guid Token { get; private set; } = Guid.NewGuid();
@@ -71,7 +91,7 @@ public partial class Visitor : IVisitor
     /// 
     /// </summary>
     [JsonInclude]
-    [JsonPropertyOrder(3)]
+    [JsonPropertyOrder(4)]
     [JsonPropertyName(nameof(VideoContentType))]
     public string? VideoContentType { get; set; } = null!;
 
@@ -79,7 +99,7 @@ public partial class Visitor : IVisitor
     /// 
     /// </summary>
     [JsonInclude]
-    [JsonPropertyOrder(4)]
+    [JsonPropertyOrder(5)]
     [JsonPropertyName(nameof(VideoContentLength))]
     [JsonRequired]
     public long VideoContentLength { get; set; } = 0;
@@ -88,7 +108,7 @@ public partial class Visitor : IVisitor
     /// 
     /// </summary>
     [JsonInclude]
-    [JsonPropertyOrder(5)]
+    [JsonPropertyOrder(6)]
     [JsonPropertyName(nameof(VideoFileExtension))]
     public string? VideoFileExtension { get; set; } = null!;
 
@@ -96,7 +116,7 @@ public partial class Visitor : IVisitor
     /// Video filename with file extension
     /// </summary>
     [JsonInclude]
-    [JsonPropertyOrder(6)]
+    [JsonPropertyOrder(7)]
     [JsonPropertyName(nameof(VideoFileName))]
     public string? VideoFileName { get; set; } = null!;
 
@@ -104,7 +124,7 @@ public partial class Visitor : IVisitor
     /// 
     /// </summary>
     [JsonInclude]
-    [JsonPropertyOrder(7)]
+    [JsonPropertyOrder(8)]
     [JsonPropertyName(nameof(VideoTitle))]
     public string? VideoTitle { get; set; } = null!;
 
